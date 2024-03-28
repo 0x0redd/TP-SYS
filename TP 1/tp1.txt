@@ -1,0 +1,37 @@
+											
+											
+											TP1
+
+
+
+EXERCICE1
+1// Déplacer le deuxième paragraphe pour le mettre en fin de texte.
+Commande : :3,9 m 14.
+
+2//Sauvegarder le contenu dans un fichier de nom «TDediteur» sans quitter «vi».
+Commande : :w<TDediteur>
+
+3//Insérer le texte suivant entre l'avant dernier et le dernier paragraphe : «On réutilisera
+une première version d'outil fournie par ANSA».
+Commande : :$ puis :m 7
+
+4//Utiliser la commande de substitution pour remplacer partout dans le texte «W3» par
+«World Wide Web».
+Commande : :1,15s/W3/World WIde Web/g
+
+5//Ajouter en fin de fichier le contenu du fichier /etc/passwd.
+Commande : :r/etc/passwd
+
+6//Utiliser la commande de substitution pour remplacer partout dans le texte «/bin/sh» par
+«/bin/csh».
+Commande : :1,47s/sh/csh/g
+
+7//Compter en utilisant les commandes de recherche de chaîne le nombre d'occurrence du
+mot «de».
+Commande : /de 
+
+8//Appeler la commande «man vi» sans quitter l'éditeur.
+Commande : :! man vi
+
+9//Quitter l'éditeur en sauvegardant le contenu.
+Commande : :wq

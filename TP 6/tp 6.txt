@@ -1,0 +1,204 @@
+tp 6
+binome 12 a1 
+FERRAH OTHMANE - AYOUB EL FATMI
+----------------------------------------------------------
+ 1- Création du fichier toto
+
+	/tp6$ touch toto
+
+2- Quels sont les droits d'accès de ce fichier? 
+
+	/tp6$ ls -l
+	total 0
+	-rw-rw-r-- 1 othmane othmane 0 Nov 18 15:07 toto
+
+3- Expliquer pourquoi le fichier toto a été crées avec ces droits d’accés 
+
+	parce que les droits (rw-rw-r--) sont les droits d’accés par defaut pour les fichiers .
+
+4- en utilisant les lettre (g,u,o,a), changer les deroits d'accès de toto selon les droits suivants :
+
+	a- rwxrwxrwx	
+	 
+		~/tp6$ chmod a=rwx toto
+
+		~/tp6$ ls -l
+
+		-rwxrwxrwx 1 othmane othmane 0 Nov 18 15:07 toto
+
+	b- r--r--r--
+
+		~/tp6$ chmod a=r toto   /*ou*/   ~/tp6$ chmod a-wx toto
+
+		~/tp6$ ls -l
+		-r--r--r-- 1 othmane othmane 0 Nov 18 15:07 toto
+
+	c- rw-------
+
+		~/tp6$ chmod u=rw-,g=---,o=--- toto
+
+		~/tp6$ ls -l
+		-rw------- 1 othmane othmane 0 Nov 18 15:07 toto
+
+	-d rwxr--r--
+
+		~/tp6$ chmod u+x,go+r toto
+
+		~/tp6$ ls -l toto
+		-rwxr--r-- 1 othmane othmane 0 Nov 18 15:07 toto
+
+5 - refaire les questio, de 4- en utilisant les code autaux
+
+	a- rwxrwxrwx
+
+	~/tp6$ chmod 777 toto
+
+	~/tp6$ ls -l toto
+	-rwxrwxrwx 1 othmane othmane 0 Nov 18 15:07 toto
+
+	b- r--r--r--
+
+	~/tp6$ chmod 444 toto
+
+	~/tp6$ ls -l toto
+	-r--r--r-- 1 othmane othmane 0 Nov 18 15:07 toto
+
+	c- rw-------
+
+	~/tp6$ chmod 600 toto
+
+	~/tp6$ ls -l toto
+	-rw------- 1 othmane othmane 0 Nov 18 15:07 toto
+
+	-d rwxr--r--
+
+	~/tp6$ chmod 744 toto
+
+	~/tp6$ ls -l toto
+	-rwxr--r-- 1 othmane othmane 0 Nov 18 15:07 toto
+
+6- comment s'ecrit en cod octal, le droit d'acces suivant : --x----w-
+
+	~/tp6$ chmod 102 toto
+
+	~/tp6$ ls -l toto
+	---x----w- 1 othmane othmane 0 Nov 18 15:07 toto
+
+7- En tant qu'utilisateur, créer un répertoire DOSSIER et un fichier FICH.
+	Quelles sont les permissions par défaut? 
+
+	~/tp6$ mkdir DOSSIER
+
+	~/tp6$ touch FICH
+
+	~/tp6$ ls -ld DOSSIER
+	drwxr-xr-x 1 othmane othmane 512 Nov 18 15:46 DOSSIER
+
+	~/tp6$ ls -l FICH
+	-rw-r--r-- 1 othmane othmane 0 Nov 18 15:46 FICH
+
+8- changer les droits par defaut : rwxr--r--
+
+	~/tp6$ rmdir DOSSIER
+
+	~/tp6$ ls
+	FICH  toto
+
+	~/tp6$ umask 033
+
+	~/tp6$ mkdir DOSSIER
+
+	~/tp6$ ls -ld DOSSIER
+	drwxr--r-- 1 othmane othmane 512 Nov 18 15:58 DOSSIER
+
+9- Recréer un répertoire et un fichier remarquer les droits d'accès.
+
+	~/tp6$ mkdir test
+
+	~/tp6$ touch test
+
+	~/tp6$ ls -ld test
+	drwxr--r-- 1 othmane othmane 512 Nov 18 16:00 test
+
+	~/tp6$ touch test1
+
+	~/tp6$ ls -l
+	total 0
+	drwxr--r-- 1 othmane othmane 512 Nov 18 15:58 DOSSIER
+	-rw-r--r-- 1 othmane othmane   0 Nov 18 15:46 FICH
+	drwxr--r-- 1 othmane othmane 512 Nov 18 16:00 test
+	-rw-r--r-- 1 othmane othmane   0 Nov 18 16:01 test1
+	---x----w- 1 othmane othmane   0 Nov 18 15:07 toto
+
+
+	on a remarque que les droit d'acces sont changer seulement
+	pour les repertoire. 
+
+	drwxr--r-- 1 othmane othmane 512 Nov 18 16:00 test
+	-rw-r--r-- 1 othmane othmane   0 Nov 18 16:01 test1
+
+
+10 - Changer les droits d'accès d'un fichier: rwxrw-r-- de deux manières: méthode directe, méthode octale. 
+
+	-méthode octale
+		~/tp6$ chmod 764 FICH
+
+		~/tp6$ ls -l FICH
+		-rwxrw-r-- 1 othmane othmane 0 Nov 18 15:46 FICH
+
+	-méthode directe
+		~/tp6$ ls -l test1
+	-r--r--r-- 1 othmane othmane 0 Nov 18 16:01 test1 
+
+		~/tp6$ chmod u+wx,g+w test1
+
+		~/tp6$ ls -l test1
+		-rwxrw-r-- 1 othmane othmane 0 Nov 18 16:01 test1
+
+11-donner les droit d'acces r-xr-xr-x a un repertoire R, puis essayer de creer un fichier ou un repertoire dans R. remarques?
+
+	~/tp6$ umask 222
+	~/tp6$ mkdir R
+	~/tp6$ cd R
+	~/tp6/R$ touch test
+	touch: cannot touch 'test': Permission denied
+
+	on remarque qu'on a pas le droit de cree un fichier test a cause des droit du fichier 
+	r-xr-xr-x
+	on peux seulmet executer ou lire les fichier 
+
+12-Donner la permission à tous les utilisateurs de votre groupe le droit de lire vos fichiers, et vos répertoires et aux autres utilisateurs aucun droit. 
+
+		~/tp6$ cd ..
+
+		~$ chmod 740 tp6
+
+		:~$ ls -l
+			total 8
+			drwxr-xr-x 1 othmane othmane  512 Oct 28 22:28 rep
+			drwxr-xr-x 1 othmane othmane  512 Oct 21 21:35 repertoire
+			-rw-r--r-- 1 othmane othmane 2844 Sep 30 15:48 tdediteurs
+			---------- 1 othmane othmane 2844 Sep 30 15:59 tdediteurs.txt
+			drwxr----- 1 othmane othmane  512 Nov 18 18:33 tp6
+
+
+13- Changer le propriétaire d'un fichier.
+	$ chown nom-ownr nom-fichier
+
+14- Changer le groupe d'utilisateur d'un fichier
+	$ chgrp nom-groupe nom-fichier
+
+15-Essayer de détruire un fichier sur lequel vous n'avez pas la permissionw. remarques?
+
+	~/tp6$ ls -l test1
+	-rwxrw-r-- 1 othmane othmane 0 Nov 18 16:01 test1
+
+	~/tp6$ chmod u-wx,g-w test1
+
+	~/tp6$ ls -l test1
+	-r--r--r-- 1 othmane othmane 0 Nov 18 16:01 test1
+
+	~/tp6$ rm test1
+	rm: remove write-protected regular empty file 'test1'?
+
+	on remarques pour suprimer test1 ill faut taper y 

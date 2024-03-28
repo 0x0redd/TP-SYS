@@ -1,0 +1,315 @@
+tp 8
+binome 12 a1 
+FERRAH OTHMANE - AYOUB EL FATMI
+-------------------------
+Exercice 1
+
+1-exécuter la ligne de commande de cet exemple.
+	$ ps -alx | grep bash
+	0  1000   10540   10352  20   0  10756  4880 do_sel Ss+  pts/2      0:00 bash
+	0  1000   11542   10352  20   0  10760  5024 do_wai Ss   pts/1      0:00 bash
+	0  1000   12740   11542  20   0   9048   712 pipe_r S+   pts/1      0:00 grep --color=auto bash
+
+2. Créer un fichier texte de nom « text1 » dont le contenu est :
+	/Downloads/tp 8$ vim text1
+	/Downloads/tp 8$ cat text1
+	1 : la commande pipe sert à la communication entre processus
+	3 : la commande tee est utile pour capturer les informations qui circulent dans un pipe
+	2 : la commande tee recopie son entrée standard sur sa sortie standard et sur un fichier
+	4 : la commande tee peut être utilisée pour sauvegarder dans un fichier les traces des
+	informations qui circulent sur sa sortie standard.
+	1 : qu’est-ce qu’un pipe et que fait la commande tee ?
+
+ i. en utilisant la commande « | » écrire une commande qui compte le nombre de ligne contenant le mot « pipe » dans le fichier « text1 ».
+ 
+~/Downloads/tp 8$ cat text1 | grep pipe | wc -l 
+3
+
+ii. Regarder dans le manuel la commande « tee ». En utilisant cette commande modifier le
+résultat obtenu en i) afin de récupérer dans un fichier « text2 » les lignes contenant le mot
+« pipe ».
+
+	/Downloads/tp8$ man tee
+	/Downloads/tp8$ cat text1 | grep pipe |wc -l | tee > text2
+	/Downloads/tp8$ ls
+	temp  text1  text2
+	/Downloads/tp8$ cat text2
+	3
+	
+iii. Ecrire une ligne de commande qui permettent de créer un fichier « text3 » qui contiendra les lignes du fichier « text1 » contenant le mot « pipe ». Ces lignes devront être triées sur le premier champ de chaque ligne. Enfin la commande affiche le nombre de ces lignes	
+
+	~/Downloads/tp8$ cat text1 | grep pipe | sort -n
+	1 : la commande pipe sert à la communication entre processus
+	1 : qu’est-ce qu’un pipe et que fait la commande tee ?
+	3 : la commande tee est utile pour capturer les informations qui circulent dans un pipe
+
+Exercice 2
+
+a. Combien y a-t’il de processus actifs sur le système ?
+	/Downloads/tp8$ ps -l  |wc -l 
+	4
+b. Combien d’utilisateurs sont connectés sur le système ? 
+En utilisant la commande « sort », afficher la liste de ces utilisateurs connectés, triée :
+
+	i. par ordre alphabétique.
+	
+	smi41@said-HP-Compaq-dx2400-Microtower-PC:~$ who | sort -k 1n
+	smi35    pts/4        2022-11-25 11:56 (p028-ThinkCentre-M70a.local)
+	smi36    pts/5        2022-11-25 11:57 (a8-ThinkCentre-M70a.local)
+	smi38    pts/3        2022-11-25 11:52 (p069-ThinkCentre-M70a.local)
+	smi41    pts/0        2022-11-25 12:11 (pc-ThinkCentre-M70a.local)
+
+	ii. selon l’heure de connexion. 
+	
+	smi41@said-HP-Compaq-dx2400-Microtower-PC:~$ who | sort -k 3
+	smi38    pts/3        2022-11-25 11:52 (p069-ThinkCentre-M70a.local)
+	smi35    pts/4        2022-11-25 11:56 (p028-ThinkCentre-M70a.local)
+	smi36    pts/5        2022-11-25 11:57 (a8-ThinkCentre-M70a.local)
+	smi41    pts/0        2022-11-25 12:11 (pc-ThinkCentre-M70a.local)
+	smi32    pts/2        2022-11-25 12:25 (a17-ThinkCentre-M70a.local)
+
+
+	a. Combien le répertoire « /etc » a t’il de fichiers répertoire ? Utiliser les commandes « ls »,« grep » et « wc ».
+
+		smi41@said-HP-Compaq-dx2400-Microtower-PC:/$ cd etc
+		smi41@said-HP-Compaq-dx2400-Microtower-PC:/etc$ ls -al | grep ^d | wc -l
+		144 
+	
+	b. Combien le répertoire « /etc » a t’il de sous-répertoires ? Utiliser les commandes « ls »,« grep » et « wc ».
+	
+	smi41@said-HP-Compaq-dx2400-Microtower-PC:/$ ls -al etc/./ | grep ^d | wc -l
+	144
+		
+
+	c. Afficher la liste des fichiers du répertoire courant, triée par ordre de taille des fichiers.
+	
+	smi41@said-HP-Compaq-dx2400-Microtower-PC:/$ ls -al etc/./ | grep ^d | sort -k 5
+	drwxr-xr-x   2 root    root    12288 2010-10-07 16:14 brltty
+	drwxr-xr-x   2 root    root    12288 2011-06-29 10:14 bash_completion.d
+	drwxr-xr-x 144 root    root    12288 2022-10-21 12:03 .
+	drwxr-xr-x   2 root    root     4096 2010-02-23 10:51 lsb-base
+	drwxr-xr-x   3 root    root     4096 2010-05-09 15:49 insserv
+	drwxr-xr-x   2 root    root     4096 2010-05-09 15:49 insserv.conf.d
+	drwxr-xr-x   2 root    root     4096 2010-05-09 16:44 libpaper.d
+	drwxr-xr-x   2 root    root     4096 2010-09-03 11:05 update-notifier
+	drwxr-xr-x   2 root    root     4096 2010-10-07 15:56 opt
+	drwxr-xr-x   2 root    root     4096 2010-10-07 15:57 python2.6
+	drwxr-xr-x   2 root    root     4096 2010-10-07 15:57 terminfo
+	drwxr-xr-x   2 root    root     4096 2010-10-07 15:58 cron.hourly
+	drwxr-xr-x   2 root    root     4096 2010-10-07 15:58 depmod.d
+	drwxr-xr-x   5 root    root     4096 2010-10-07 15:58 initramfs-tools
+	drwxr-xr-x   2 root    root     4096 2010-10-07 15:58 iproute2
+	drwxr-xr-x   2 root    root     4096 2010-10-07 15:58 kbd
+	drwxr-xr-x   2 root    root     4096 2010-10-07 15:58 python
+	drwxr-xr-x   2 root    root     4096 2010-10-07 15:58 sysctl.d
+	drwxr-xr-x   2 root    root     4096 2010-10-07 15:58 vim
+	drwxr-xr-x   4 root    root     4096 2010-10-07 15:59 perl
+	drwxr-xr-x   6 root    root     4096 2010-10-07 16:00 gconf
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:00 gnome-vfs-2.0
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:00 sound
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:01 ca-certificates
+	drwxr-xr-x   5 root    root     4096 2010-10-07 16:01 ConsoleKit
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:01 gnome-settings-daemon
+	drwxr-xr-x   5 root    root     4096 2010-10-07 16:01 polkit-1
+	drwxr-xr-x   4 root    root     4096 2010-10-07 16:02 fonts
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:02 gtk-2.0
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:02 pango
+	drwxr-xr-x   6 root    root     4096 2010-10-07 16:03 apm
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:03 emacs
+	drwxr-xr-x   5 root    root     4096 2010-10-07 16:03 pm
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:03 resolvconf
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:04 doc-base
+	drwxr-xr-x   4 root    root     4096 2010-10-07 16:04 ghostscript
+	drwxr-xr-x   4 root    root     4096 2010-10-07 16:05 firefox
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:08 ifplugd
+	drwxr-xr-x   5 root    root     4096 2010-10-07 16:08 kernel
+	drwxr-xr-x   4 root    root     4096 2010-10-07 16:09 defoma
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:10 bonobo-activation
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:10 foomatic
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:10 gnome
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:10 sgml
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:11 calendar
+	drwxr-s---   2 root    dip      4096 2010-10-07 16:11 chatscripts
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:11 groff
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:11 ufw
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:11 xml
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:12 acpi
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:12 bluetooth
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:12 compizconfig
+	drwxrwxr-x   4 couchdb couchdb  4096 2010-10-07 16:12 couchdb
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:12 cron.monthly
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:12 gnome-app-install
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:12 modprobe.d
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:13 obex-data-server
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:13 sensors.d
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:13 snmp
+	drwxr-xr-x   4 root    root     4096 2010-10-07 16:13 speech-dispatcher
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:13 UPower
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:14 pcmcia
+	drwxr-xr-x   8 root    dip      4096 2010-10-07 16:14 ppp
+	drwxr-xr-x   3 root    root     4096 2010-10-07 16:14 sane.d
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:14 usb_modeswitch.d
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:14 wpa_supplicant
+	drwxr-xr-x   6 root    root     4096 2010-10-07 16:14 xdg
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:15 byobu
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:15 checkbox.d
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:15 cron.weekly
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:15 gamin
+	drwxr-xr-x   4 root    root     4096 2010-10-07 16:15 mono
+	drwxr-xr-x  10 root    root     4096 2010-10-07 16:15 X11
+	drwxr-xr-x   2 root    root     4096 2010-10-07 16:17 dictionaries-common
+	drwxr-xr-x   3 root    root     4096 2010-10-10 20:19 skel
+	drwxr-xr-x   2 root    root     4096 2011-02-10 16:16 console-setup
+	drwxr-xr-x   5 root    root     4096 2011-02-11 08:50 NetworkManager
+	drwxr-xr-x   4 root    root     4096 2011-02-11 11:38 dpkg
+	drwxr-xr-x   3 root    root     4096 2011-02-11 11:49 apparmor
+	drwxr-xr-x   3 root    root     4096 2011-02-11 11:49 udev
+	drwxr-xr-x   2 root    root     4096 2011-02-11 11:50 gdb
+	drwxr-xr-x   2 root    root     4096 2011-02-11 11:50 hp
+	drwxr-xr-x   2 root    root     4096 2011-02-11 11:50 ld.so.conf.d
+	drwxr-xr-x   2 root    root     4096 2011-02-11 11:50 pulse
+	drwxr-xr-x   4 root    root     4096 2011-02-11 11:51 apport
+	drwxr-xr-x   2 root    root     4096 2011-02-11 11:51 computer-janitor.d
+	drwxr-xr-x   2 root    root     4096 2011-02-11 11:51 gnome-system-tools
+	drwxr-xr-x   2 root    root     4096 2011-02-11 11:51 sudoers.d
+	drwxr-xr-x   2 root    root     4096 2011-02-11 11:51 xul-ext
+	drwxr-xr-x   2 root    root     4096 2011-02-11 11:52 openoffice
+	drwxr-xr-x   2 root    root     4096 2011-02-14 12:41 rsyslog.d
+	drwxr-xr-x   4 root    root     4096 2011-02-14 13:05 dhcp
+	drwxr-xr-x   6 root    root     4096 2011-02-14 13:05 logcheck
+	drwxr-xr-x   2 root    root     4096 2011-02-14 13:05 postfix
+	drwxr-sr-x   7 smmta   smmsp    4096 2011-02-14 13:06 mail
+	drwxr-xr-x   7 root    root     4096 2011-03-17 11:43 apache2
+	drwxr-xr-x   3 root    root     4096 2011-03-17 11:52 mysql
+	drwxr-xr-x   5 root    root     4096 2011-03-17 11:52 php5
+	drwxr-xr-x   2 root    root     4096 2011-03-17 11:54 javascript-common
+	drwxr-xr-x   2 root    root     4096 2011-03-17 11:55 dbconfig-common
+	drwxr-xr-x   2 root    root     4096 2011-03-17 11:55 phpmyadmin
+	drwxr-xr-x   2 root    root     4096 2011-06-24 11:08 cron.d
+	drwxr-xr-x   2 root    root     4096 2011-06-24 11:08 moodle
+	drwxr-xr-x   4 root    root     4096 2011-06-29 10:06 security
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:07 cron.daily
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:08 rc0.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:08 rc1.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:08 rc2.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:08 rc3.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:08 rc4.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:08 rc5.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:08 rc6.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:08 rcS.d
+	drwxr-xr-x  22 root    root     4096 2011-06-29 10:13 ..
+	drwxr-xr-x   3 root    root     4096 2011-06-29 10:14 avahi
+	drwxr-xr-x   5 root    root     4096 2011-06-29 10:14 dbus-1
+	drwxr-xr-x   4 root    root     4096 2011-06-29 10:14 dhcp3
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:14 ldap
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:14 profile.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:14 w3m
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:16 alternatives
+	drwxr-xr-x   6 root    root     4096 2011-06-29 10:16 gdm
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:16 gre.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:16 grub.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:16 logrotate.d
+	drwxr-xr-x   4 root    root     4096 2011-06-29 10:16 ssl
+	drwxr-xr-x   3 root    root     4096 2011-06-29 10:16 update-manager
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:16 update-motd.d
+	drwxr-xr-x   2 root    root     4096 2011-06-29 10:16 xulrunner-1.9.2
+	drwxr-xr-x   8 root    root     4096 2011-06-29 10:17 apparmor.d
+	drwxr-xr-x 115 root    root     4096 2011-10-12 12:56 webmin
+	drwxr-xr-x   2 root    root     4096 2012-02-20 08:18 esound
+	drwxr-xr-x   2 root    root     4096 2012-02-20 08:18 mplayer
+	drwxr-xr-x   2 root    root     4096 2012-02-20 08:18 openal
+	drwxr-xr-x   2 root    root     4096 2012-02-20 08:18 vga
+	drwxr-xr-x   2 root    root     4096 2012-04-07 12:39 samba
+	drwxr-xr-x   2 root    root     4096 2013-04-16 10:06 default
+	drwxr-xr-x   2 root    root     4096 2013-04-16 10:06 init
+	drwxr-xr-x   2 root    root     4096 2013-04-16 10:06 init.d
+	drwxr-xr-x   2 root    root     4096 2013-04-16 10:06 pam.d
+	drwxr-xr-x   2 root    root     4096 2013-04-16 10:06 ssh
+	drwxr-xr-x   4 root    lp       4096 2013-11-15 08:03 cups
+	drwxr-xr-x   6 root    root     4096 2021-10-14 19:04 network
+	drwxr-xr-x   6 root    root     4096 2021-10-23 08:12 apt
+
+Exercice 3
+
+1.Utiliser la commande « cat » et l'opérateur « > » pour créer les fichiers « fich1 » et  « fich2 ». Toujours en utilisant la commande « cat » mais cette fois en regardant le manuel créer le fichier « fich3 » constitué de la concaténation des fichiers « fich1 » et « fich2 ».
+ 
+	~# cat > fich1
+	Utiliser la commande « cat » et l'opérateur « > » pour créer les fichiers « fich1 » et
+	« fich2 ». Toujours en utilisant la commande « cat » mais cette fois en regardant le manuel
+	créer le fichier « fich3 » constitué de la concaténation des fichiers « fich1 » et « fich2 »
+	^C
+	
+	~# cat fich1
+	Utiliser la commande « cat » et l'opérateur « > » pour créer les fichiers « fich1 » et
+	« fich2 ». Toujours en utilisant la commande « cat » mais cette fois en regardant le manuel
+	créer le fichier « fich3 » constitué de la concaténation des fichiers « fich1 » et « fich2 »
+		
+	~# cat > fich2
+	Utiliser la commande « cat » et l'opérateur « > » pour créer les fichiers « fich1 » et
+	« fich2 ». Toujours en utilisant la commande « cat » mais cette fois en regardant le manuel
+	créer le fichier « fich3 » constitué de la concaténation des fichiers « fich1 » et « fich2 »
+		^C
+	
+	~# cat fich2
+	Utiliser la commande « cat » et l'opérateur « > » pour créer les fichiers « fich1 » et
+	« fich2 ». Toujours en utilisant la commande « cat » mais cette fois en regardant le manuel
+	créer le fichier « fich3 » constitué de la concaténation des fichiers « fich1 » et « fich2 »
+		
+/-Toujours en utilisant la commande "cat" mais cette fois en regardant le manuel créer le fichier
+	"fich3" constitué de la concaténation des fichiers "fich1" et "fich2".
+
+	:~# cat fich1 fich2 > fich3
+	~# cat fich3
+		Utiliser la commande « cat » et l'opérateur « > » pour créer les fichiers « fich1 » et
+		« fich2 ». Toujours en utilisant la commande « cat » mais cette fois en regardant le manuel
+		créer le fichier « fich3 » constitué de la concaténation des fichiers « fich1 » et « fich2 »
+		Utiliser la commande « cat » et l'opérateur « > » pour créer les fichiers « fich1 » et
+		« fich2 ». Toujours en utilisant la commande « cat » mais cette fois en regardant le manuel
+		créer le fichier « fich3 » constitué de la concaténation des fichiers « fich1 » et « fich2 »
+	
+2-Lancer la commande « cat fich1 fich-inexistant » avec le fichier « fich-inexistant » inexistant 
+et le fichier « fich1 » existant.
+	~# cat fich1 fich-inexistant
+	Utiliser la commande « cat » et l'opérateur « > » pour créer les fichiers « fich1 » et
+	« fich2 ». Toujours en utilisant la commande « cat » mais cette fois en regardant le manuel
+	créer le fichier « fich3 » constitué de la concaténation des fichiers « fich1 » et « fich2 »
+	cat: fich-inexistant: No such file or directory
+
+3-Nous pouvons rediriger la sortie standard en utilisant l’opérateur « > » ; par exemple « cat 
+fich1 fich-inexistant > trace » ou 
+« cat fich1 fich-inexistant 1>trace ».
+Lancez les deux commandes ; que constatez-vous ?
+
+	~# cat fich1 fich-inexistant > trace
+	cat: fich-inexistant: No such file or directory
+	
+	~# ls
+	fich1  fich2  fich3  trace
+	
+	~# cat fich1 fich-inexistant 1> trace
+	cat: fich-inexistant: No such file or directory
+
+la sortie standart et la sortie d'ereur ne son pas confondu et 1> , > sont equivalents
+
+
+4-Lancez la commande du 2) en redirigeant la sortie d’erreur dans le fichier "err".
+Comment peut−on rediriger la sortie standard sur la sortie d’erreur ?
+
+	~# cat fich1 fich-inexistant 2> err
+	Utiliser la commande « cat » et l'opérateur « > » pour créer les fichiers « fich1 » et
+	« fich2 ». Toujours en utilisant la commande « cat » mais cette fois en regardant le manuel
+	créer le fichier « fich3 » constitué de la concaténation des fichiers « fich1 » et « fich2 »
+	
+	:~# cat err
+	cat: fich-inexistant: No such file or directory
+	
+-	
+	:~#  cat fich1 fich−inexistant 2>err >&2
+	root@DESKTOP-DR33JLP:~# cat err
+	Utiliser la commande « cat » et l'opérateur « > » pour créer les fichiers « fich1 » et
+	« fich2 ». Toujours en utilisant la commande « cat » mais cette fois en regardant le manuel
+	créer le fichier « fich3 » constitué de la concaténation des fichiers « fich1 » et « fich2 »
+	cat: fich−inexistant: No such file or directory
+	
+	
+

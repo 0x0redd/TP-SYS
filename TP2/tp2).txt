@@ -1,0 +1,161 @@
+					binome 12 groupe A2
+			      FERRAH othmane et ELFATMI ayoub
+
+
+
+-3 LA command suivante $ cat /etc/passwd
+
+		smi41@said-HP-Compaq-dx2400-Microtower-PC:~$ cat /etc/passxd
+		cat: /etc/passxd: Aucun fichier ou dossier de ce type
+		smi41@said-HP-Compaq-dx2400-Microtower-PC:~$ cat /etc/passwd
+		root:x:0:0:root:/root:/bin/bash
+		daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+		bin:x:2:2:bin:/bin:/bin/sh
+		.............................................
+		smi54:x:1090:1051:smi54,,,,:/home/smi54:/bin/bash
+		smi55:x:1091:1052:smi55,,,,:/home/smi55:/bin/bash
+		smi56:x:1092:1053:smi56,,,,:/home/smi56:/bin/bash
+		smi57:x:1093:1054:smi57,,,,:/home/smi57:/bin/bash
+		smi58:x:1094:1055:smi58,,,,:/home/smi58:/bin/bash
+		smi59:x:1095:1056:smi59,,,,:/home/smi59:/bin/bash
+		smi60:x:1096:1057:smi60,,,,:/home/smi60:/bin/bash
+		smi61:x:1097:1058:smi61,,,,:/home/smi61:/bin/bash
+		smi62:x:1098:1059:smi62,,,,:/home/smi62:/bin/bash
+		smi63:x:1099:1060:smi63,,,,:/home/smi63:/bin/bash
+		smi64:x:1100:1061:smi64,,,,:/home/smi64:/bin/bash
+		
+4- 
+
+les information affichées sont les informations sur tout les utilisateur ayantun compt sur le serveur 
+
+5-   	
+		$who : represente les utilisateur connecter au serveur 
+		$who -H :represente les utilisateur connecter au serveur avec les lignes d'en-tête
+		$who am i :represente notre systeme
+		$who -y : n'existe pas
+		$who --help: la commande fourni des informations complet sur la commande who 
+		$which who :represente le chemin complet de la commande who 
+		
+6- 
+	
+	envoier à smi58
+
+7- 
+	
+	envoier à smi58
+
+8-
+
+-la commande $cat lie le contenu d'un fichier texte
+-la commande $date afiche la date et heur connues par le systeme vendredi 7 octobre 2022, 12:20:52 (UTC+0000)
+-la commande $wc compte le nombre de lignes, de mots et de caractères contenus
+dans le fichier passé en argument.
+-la commande $cal represente le calendrier du mois actuele
+-la commande $which represente le chemin complet de la commande en argument : /usr/bin/cal
+-la commande $touch créer un fichier
+-la commande $grep cherche les fichiers possédant des chaînes de caractères données 
+	lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+	news:x:9:9:news:/var/spool/news:/bin/sh
+	uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+	postfix:x:115:124::/var/spool/postfix:/bin/false
+-dd copie le ficheier ou le convertire 
+		
+9- 
+
+	$ pwd : 
+		/home/smi41
+	-pwd - nom du répertoire courant/de travail
+
+	$ ls : Bureau  essai  examples.desktop
+	-ls - liste le contenu du répertoire
+
+	$ ls -l :
+		drwxr-xr-x 2 smi41 smi41 4096 2002-01-09 01:04 Bureau
+		-rw-r--r-- 1 smi41 smi41    0 2022-10-07 12:32 essai
+		-rw-r--r-- 1 smi41 smi41  179 2002-01-09 01:04 examples.desktop
+	-ls -l liste le contenu du répertoire et utiliser un format de liste longue.
+
+	$ ls -a :
+		.   .bash_history  .bashrc  .cache  examples.desktop
+		..  .bash_logout   Bureau   essai   .profile
+	liste le contenu du répertoire et n'ignore pas les entrées commençant par.
+
+	$ ls -al :
+		total 36
+		drwxr-xr-x   4 smi41 smi41 4096 2022-10-07 12:32 .
+		drwxr-xr-x 102 root  root  4096 2022-10-04 10:17 ..
+		-rw-------   1 smi41 smi41  199 2022-10-07 12:04 .bash_history
+		-rw-r--r--   1 smi41 smi41  220 2002-01-09 01:04 .bash_logout
+		-rw-r--r--   1 smi41 smi41 3353 2002-01-09 01:04 .bashrc
+		drwxr-xr-x   2 smi41 smi41 4096 2002-01-09 01:04 Bureau
+		drwx------   2 smi41 smi41 4096 2022-10-07 11:09 .cache
+		-rw-r--r--   1 smi41 smi41    0 2022-10-07 12:32 essai
+		-rw-r--r--   1 smi41 smi41  179 2002-01-09 01:04 examples.desktop
+		-rw-r--r--   1 smi41 smi41  675 2002-01-09 01:04 .profile
+	liste le contenu du répertoire et n'ignore pas les entrées commençant par en utiliser un format de liste longue
+
+	$ rm :
+	rm - supprimer des fichiers ou des répertoires
+
+	$ mkdir :
+		mkdir - créer des répertoires
+
+	$ cd :
+		$ cd SE_essais
+		$ pwd : /home/smi41/SE_essais
+	-changez le répertoire de travail de l'actuel d'exécution du shell
+
+	$ touch :
+		$touch toto : -rw-r--r-- 1 smi41 smi41 0 2022-10-07 12:43 toto
+	-  la commande modifie les horodatages des fichiers
+
+	$ which cd :
+
+	$ which date :
+		/bin/date
+	represente le chemin complet de la commande en argument
+
+10- 
+
+la comande qui nous perment de verifier si le serveur et allume est:
+	$ ping 172.30.80.81
+		PING 172.30.80.81 (172.30.80.81) 56(84) bytes of data.
+		64 bytes from 172.30.80.81: icmp_req=1 ttl=64 time=0.037 ms
+		64 bytes from 172.30.80.81: icmp_req=2 ttl=64 time=0.017 ms
+		64 bytes from 172.30.80.81: icmp_req=3 ttl=64 time=0.018 ms
+		64 bytes from 172.30.80.81: icmp_req=4 ttl=64 time=0.015 ms
+		64 bytes from 172.30.80.81: icmp_req=5 ttl=64 time=0.018 ms
+		64 bytes from 172.30.80.81: icmp_req=6 ttl=64 time=0.033 ms
+		64 bytes from 172.30.80.81: icmp_req=7 ttl=64 time=0.017 ms
+		64 bytes from 172.30.80.81: icmp_req=8 ttl=64 time=0.016 ms
+		64 bytes from 172.30.80.81: icmp_req=9 ttl=64 time=0.017 ms
+		64 bytes from 172.30.80.81: icmp_req=10 ttl=64 time=0.016 ms
+		64 bytes from 172.30.80.81: icmp_req=11 ttl=64 time=0.019 ms
+		^C
+		--- 172.30.80.81 ping statistics ---
+		11 packets transmitted, 11 received, 0% packet loss, time 9997ms
+		rtt min/avg/max/mdev = 0.015/0.020/0.037/0.007 ms
+
+11-
+
+por verifier la connecion avec la passrelle 
+	$ ifconfig
+		
+		eth0      Link encap:Ethernet  HWaddr 00:22:64:23:3d:cc  
+          inet adr:172.30.80.81  Bcast:172.30.255.255  Masque:255.255.0.0
+          adr inet6: fe80::222:64ff:fe23:3dcc/64 Scope:Lien
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          Packets reçus:2018778 erreurs:0 :0 overruns:0 frame:0
+          TX packets:154181 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 lg file transmission:1000 
+          Octets reçus:281904785 (281.9 MB) Octets transmis:27446609 (27.4 MB)
+          Interruption:42 Adresse de base:0xe000 
+
+		lo        Link encap:Boucle locale  	
+          inet adr:127.0.0.1  Masque:255.0.0.0
+          adr inet6: ::1/128 Scope:Hôte
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          Packets reçus:103436 erreurs:0 :0 overruns:0 frame:0
+          TX packets:103436 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 lg file transmission:0 
+          Octets reçus:11247813 (11.2 MB) Octets transmis:11247813 (11.2 MB)

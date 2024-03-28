@@ -1,0 +1,113 @@
+	TP3
+	BINOMR 12 GROUPE A1 
+	FERRAH OTHMANE - AYOUB EL FATMI
+
+
+
+
+EX1:
+
+- on applique la commande stat sur le fichier "tp":
+	-rw-rw-r-- 1 a17 a17     0 مارس  16  2022  tp
+on à :
+a17@a17-ThinkCentre-M70a:~$ stat tp
+	  Fichier : tp
+	   Taille : 0         	Blocs : 0          Blocs d'E/S : 4096   fichier vide
+	Périphérique : 804h/2052d	Inœud : 8001146     Liens : 2
+	Accès : (0664/-rw-rw-r--)  UID : ( 1000/     a17)   GID : ( 1000/     a17)
+	Accès : 2022-03-30 11:07:26.196529968 +0000
+	Modif. : 2022-03-16 10:46:07.995782102 +0100
+	Changt : 2022-10-14 11:37:36.304845537 +0100
+	  Créé : -
+
+- on construis un fichier lien physique à t3 par la commande:
+
+	a17@a17-ThinkCentre-M70a:~$ ln tp t3
+
+- puis on apllique la commande stat sur t3 : 
+
+	a17@a17-ThinkCentre-M70a:~$ stat t3
+	Fichier : t3
+	Taille : 0         	Blocs : 0          Blocs d'E/S : 4096   fichier vide
+	Périphérique : 804h/2052d	Inœud : 8001146     Liens : 2
+	Accès : (0664/-rw-rw-r--)  UID : ( 1000/     a17)   GID : ( 1000/     a17)
+	Accès : 2022-03-30 11:07:26.196529968 +0000
+	Modif. : 2022-03-16 10:46:07.995782102 +0100
+	Changt : 2022-10-14 11:37:36.304845537 +0100
+	 Créé : -
+	
+ - on construis un fichier lien symbolique à tp1 par la commande:
+
+	a17@a17-ThinkCentre-M70a:~$ ln -sf tp tp1
+
+-puis on apllique la commande stat sur tp1 :
+
+	a17@a17-ThinkCentre-M70a:~$ stat tp1 
+	  Fichier : tp1 -> tp
+	   Taille : 2         	Blocs : 0          Blocs d'E/S : 4096   lien symbolique
+	Périphérique : 804h/2052d	Inœud : 8001572     Liens : 1
+	Accès : (0777/lrwxrwxrwx)  UID : ( 1000/     a17)   GID : ( 1000/     a17)
+	Accès : 2022-10-14 11:44:31.421195322 +0100
+	Modif. : 2022-10-14 11:44:13.260986210 +0100
+	Changt : 2022-10-14 11:44:13.260986210 +0100
+	  Créé : -
+
+on a: 
+		 |  fichier|taille | blocs | Inœud | Liens |Accès
+fichier original:| tp      |0      |0      |8001146|2      |-rw-rw-r--
+lien physique   :| t3      |0      |0      |8001146|2      |-rw-rw-r--
+lien symbolique :|tp1 -> tp|2      |0      |8001572|1      |lrwxrwxrwx
+/dev/log        :|/dev/log |28     |0      |449    |1      |lrwxrwxrwx
+
+
+
+-donc le fichier par lien physique a le même nombre d'inoeud 8001146 et le meme droits d'accès et lien mais pas le meme nom 
+-or le fichier par lien symbolique on le meme nom  mais de droits d'accès et de taille different et 
+
+a17@a17-ThinkCentre-M70a:~$ stat /dev/log
+	  Fichier : /dev/log -> /run/systemd/journal/dev-log
+	   Taille : 28        	Blocs : 0          Blocs d'E/S : 4096   lien symbolique
+	Périphérique : 6h/6d	Inœud : 449         Liens : 1
+	Accès : (0777/lrwxrwxrwx)  UID : (    0/    root)   GID : (    0/    root)
+	Accès : 2022-10-14 12:41:29.924445874 +0100
+	Modif. : 2022-10-14 12:41:25.304446055 +0100
+	Changt : 2022-10-14 12:41:25.304446055 +0100
+	  Créé : -
+
+
+
+EX 2
+
+ona 
+a17@a17-ThinkCentre-M70a:~$ ls -i /
+	 5898241 bin             17432577 lib64       28311553 snap
+	 3145729 boot                  11 lost+found  21364737 srv
+	 9830401 cdrom           10878977 media             12 swapfile
+	       2 dev             17170433 mnt                1 sys
+	15335425 etc             10092545 opt          1310721 tmp
+	 7995393 home                   1 proc        17301505 usr
+	      15 initrd.img      14942209 root        29622273 var
+	      17 initrd.img.old         2 run               13 vmlinuz
+	13238273 lib              3932161 sbin              14 vmlinuz.old
+
+a17@a17-ThinkCentre-M70a:/etc$ cat fstab
+	a17@a17-ThinkCentre-M70a:/etc$ cat fstab
+	# /etc/fstab: static file system information.
+	#
+	# Use 'blkid' to print the universally unique identifier for a
+	# device; this may be used with UUID= as a more robust way to name devices
+	# that works even if disks are added and removed. See fstab(5).
+	#
+	# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+	# / was on /dev/sda4 during installation
+	UUID=c250f5b2-e789-413e-b8ac-c6874c3e7187 /               ext4    errors=remount-ro 0       1
+	# /boot/efi was on /dev/nvme0n1p2 during installation
+	UUID=340C-9784  /boot/efi       vfat    umask=0077      0       1
+	/swapfile                                 none            swap    sw              0       0
+
+
+Le fichier de configuration /etc/fstab contient les informations nécessaires pour automatiser le processus de montage des partitions.
+par lequel une partition brute (physique) est préparée pour l'accès et affectée à un emplacement dans l'arborescence du système de fichiers.
+
+-Le nombre d'inœuds est égal au nombre total de fichiers et de répertoires dans un compte utilisateur ou sur un disque.
+ elle continent les infomrmation sur tout les fichier et repertoire ( taille,blocs d'execution,droits d'accès...)

@@ -1,0 +1,77 @@
+tp 9
+binome 12 a1 
+FERRAH OTHMANE - AYOUB EL FATMI
+----------------------------------------------------------
+Exercice 1 : paramètres.
+
+	#!/bin/bash
+	echo "Bonjour, vous avez rentré le nombre de paramètres" $#
+	echo "Le nom du script est" $0
+	echo "le 3eme parametre est $3 "
+	echo "Voici la liste des paramètres :" $@
+
+Exercice 2: vérification du nombre de paramètres.
+
+Ecrivez un script concat.sh qui prend en paramètre 2 mots 
+
+	#!/bin/bash
+	 CONCAT="$1"
+	 CONCAT+="$2"
+	if [ $# -ne 2 ] 
+	then echo "erreur rentrer 2 paramètres exactement"
+	else echo "$CONCAT"
+	fi
+
+
+	Exercice 3: argument type et droits 
+
+	#!/bin/bash
+
+	if [ ! -e "$1" ]; then
+	   echo "Le fichier '$1' n'existe pas"
+	   exit
+	fi
+
+	if [ ! -s "$1" ]; then
+	   echo "$1 a une taille nulle"
+	   exit
+	fi
+
+	if [ -f "$1" ]; then
+	   echo "'$1' est un fichier ordinaire qui n'est pas vide"
+	elif [ -d "$1" ]; then
+	   echo "'$1' est un répertoire"
+	elif [ -l "$1" ]; then
+	   echo "'$1' est un lien symbolique"
+	else
+	   echo "'$1' n'est ni un fichier ni un répertoire"
+	fi
+	# droits et type d'utilisateur
+	a=$(stat -c%A "$1")
+	p=$(stat -c%U "$1")
+	g=$(stat -c%G "$1")
+
+	n=1
+	echo "'$1' est accessible par :"
+	for u in "le propriétaire ($p)" "le groupe ($g)" "les autres"
+	do
+	    echo -n "* $u en"
+	    d=${a:n:3}
+	    if [ $d == --- ]
+	    then echo -n " rien"
+	    else
+	        [[ $d == r?? ]] && echo -n " lecture"
+	        [[ $d == ?w? ]] && echo -n " écriture"
+	        [[ $d == ??x ]] && echo -n " exécution"
+	    fi
+	   fi
+	    n=$((n+3))
+	    echo
+	done
+
+othmane@DESKTOP-DR33JLP:~/tp9$ bash test-fich.sh /etc
+'/etc' est un répertoire
+'/etc' est accessible par :
+* le propriétaire (root) en lecture écriture exécution
+* le groupe (root) en lecture exécution
+* les autres en lecture exécution

@@ -1,0 +1,315 @@
+	tp 4
+BINOMR 12 GROUPE A1 
+FERRAH OTHMANE - AYOUB EL FATMI
+---------------------------------------------------------------------------------------------
+1/ les commandes qui afiche le repertoire est:
+	$ls -l 
+	$tree -d -R OU $tree -d -L 1
+	
+2/ les commandes qui afiche le cotenu de /etc page par page est :
+
+	 $cd etc/
+	 
+/etc$ tree -d -L 1
+				.
+				├── acpi
+				├── alternatives
+				├── apache2
+				├── apm
+				├── apparmor
+				├── apparmor.d
+				├── apport
+				├── apt
+				├── avahi
+				├── bash_completion.d
+				├── binfmt.d
+				├── bluetooth
+				├── brltty
+				├── ca-certificates
+				├── calendar
+				├── chatscripts
+				├── console-setup
+				├── cracklib
+				├── cron.d
+				├── cron.daily
+				├── cron.hourly
+				├── cron.monthly
+				├── cron.weekly
+				├── cups
+				├── cupshelpers
+				├── dbus-1
+				├── dconf
+				├── default
+				├── depmod.d
+				├── dhcp
+				├── dictionaries-common
+				├── dpkg
+				├── emacs
+				├── firefox
+				├── fonts
+				├── fwupd
+				├── gdb
+				├── gdm3
+				├── geoclue
+				├── ghostscript
+				├── glvnd
+				├── gnome
+				├── groff
+				├── grub.d
+				├── gss
+				├── gtk-2.0
+				├── gtk-3.0
+				├── hp
+				├── ifplugd
+				├── ImageMagick-6
+				├── init
+				├── init.d
+				├── initramfs-tools
+				├── insserv.conf.d
+				├── iproute2
+				├── java-11-openjdk
+				├── kernel
+				├── ldap
+				├── ld.so.conf.d
+				├── libblockdev
+				├── libnl-3
+				├── libpaper.d
+				├── libreoffice
+				├── lighttpd
+				├── logcheck
+				├── logrotate.d
+				├── modprobe.d
+				├── modules-load.d
+				├── mysql
+				├── netplan
+				├── network
+				├── networkd-dispatcher
+				├── NetworkManager
+				├── newt
+				├── ODBCDataSources
+				├── opt
+				├── PackageKit
+				├── pam.d
+				├── pcmcia
+				├── perl
+				├── pki
+				├── pm
+				├── polkit-1
+				├── ppp
+				├── profile.d
+				├── pulse
+				├── python
+				├── python2.7
+				├── python3
+				├── python3.6
+				├── rc0.d
+				├── rc1.d
+				├── rc2.d
+				├── rc3.d
+				├── rc4.d
+				├── rc5.d
+				├── rc6.d
+				├── rcS.d
+				├── resolvconf
+				├── rsyslog.d
+				├── sane.d
+				├── security
+				├── selinux
+				├── sensors.d
+				├── sgml
+				├── skel
+				├── speech-dispatcher
+				├── ssh
+				├── ssl
+				├── sudoers.d
+				├── sysctl.d
+				├── systemd
+				├── terminfo
+				├── texmf
+				├── thermald
+				├── thunderbird
+				├── tmpfiles.d
+				├── ubuntu-advantage
+				├── udev
+				├── udisks2
+				├── ufw
+				├── update-manager
+				├── update-motd.d
+				├── update-notifier
+				├── UPower
+				├── usb_modeswitch.d
+				├── vim
+				├── wpa_supplicant
+				├── X11
+				└── xdg
+
+
+3/ pour chercher la positin actuele
+	$pwd 
+4/pour  construre l'arborescence suivante tout en restant dans le  répertoire de connexion
+ 	 $ sudo mkdir {data.d,dev1.d,dev2.d,source.d}
+ 	 $ cd source.d
+ 	 $ sudo mkdir {c.d,script.d,}
+ 	  
+repertoire
+	    ├── data.d
+	    ├── dev1.d
+	    ├── dev2.d
+	    └── source.d
+			├── c.d
+			└── script.d
+5/ pou aficher le type de fichier data.d
+	$ls -l data.d
+6/pour se positioner dans data.d 
+	accès relatif > $ cd data.d
+	absolu > $ cd /home/repertoire/data.d
+	
+7/ - 8/ - 9/
+	$ cd smi33
+	$ ls
+		Bureau  examples.desktop
+		
+	smi41 PC:/home/smi33$ sudo touch f1
+	[sudo] password for smi41: 
+	smi41 is not in the sudoers file.  This incident will be reported.
+	
+	smi41 PC:/home/smi33$ sudo touch f2 
+	[sudo] password for smi41: 
+	smi41 is not in the sudoers file.  This incident will be reported.
+	
+	-> on ne peux pas cree les deux fichier F1 et F2 car on est en mod super user 
+10/ 
+	a17@a17-ThinkCentre-M70a:/home/repertoire/data.d$ sudo touch f1
+	a17@a17-ThinkCentre-M70a:/home/repertoire/data.d$ sudo touch f2
+$ tree -a -r
+		.
+		├── tdediteurs.txt
+		├── tdediteurs
+		├── repertoire
+		    ├── source.d
+		    │   ├── script.d
+		    │   └── c.d
+		    ├── dev2.d
+		    ├── dev1.d
+		    └── data.d
+		       ├── f2
+		       └── f1
+11/
+		$ sudo cp f1 fa3
+		$ ls
+		f1  f2  fa3
+		$ sudo mv fa3 /home/repertoire/dev1.d
+
+12/
+  Se placer dans dev1.d et renommer FA3 par FA4 
+  
+	$cd /home/repertoire/dev1.d
+	$sudo mv FA3 FA4 
+
+12/
+	Dans data.d déplacer le fichier F2 dans c.d
+	
+	$ cd /home/repertoire/data.d
+	
+	$ sudo mv F2  /home/repertoire/source.d/c.d
+	
+
+13/
+	Créer un lien hard FlienH sur F2 qui doit se trouver dans le répertoire de connexion
+on a 
+	$cd /home/repertoire/source.d/c.d
+	
+	$sudo ln /home/repertoire
+	
+	
+14/
+	Taper ls –l puis remarquer le nombre de lien physique 
+	~/repertoire$ ls -l
+						total 0
+						drwxr-xr-x 1 root root 512 Oct 21 20:50 data.d
+						drwxr-xr-x 1 root root 512 Oct 21 20:47 dev1.d
+						drwxr-xr-x 1 root root 512 Oct 21 20:29 dev2.d
+						-rw-r--r-- 2 root root   0 Oct 21 20:31 FlienH
+						drwxr-xr-x 1 root root 512 Oct 21 20:29 source.d
+
+	~/repertoire/source.d/c.d$ ls -l
+							total 0
+							-rw-r--r-- 2 root root 0 Oct 21 20:31 f2
+						
+	-> on a deux lien phisique pour le fichier f2
+	
+15 / 
+	Changer le contenu de l'un des deux fichier F2 ou FLienH  echo "je change le fichier" >>FlienH
+ 
+    sudo vim f2
+	
+16/
+	Visualiser le contenue de F2, remarque
+	
+	~/repertoire/source.d/c.d$ sudo cat f2
+		
+		echo"je change le fichier">>FlienH
+		
+17/ 
+	Créer un lien symbolique FLienS sur F2
+	
+	~/repertoire/source.d/c.d$ sudo ln -s f2 FLienS
+	
+18/
+	Taper ls –l , remarquer le champ taille.
+	
+	~/repertoire/source.d/c.d$ ls -l
+		
+		total 0
+		lrwxrwxrwx 1 root root  2 Oct 21 21:19 FLienS -> f2
+		-rw-r--r-- 2 root root 36 Oct 21 21:15 f2
+
+19/
+	Supprimer F2
+	
+	~/repertoire/source.d/c.d$ sudo rm f2
+	
+20/
+	Visualiser les fichiers FlienH et FlienS, remarques?
+->	FlienS
+
+	~/repertoire/source.d/c.d$cat FLienS
+	
+	cat: FLienS: No such file or directory
+	
+-> FlienH 
+	
+	~/repertoire$sudo cat FlienH
+	
+	echo"je change le fichier">>FlienH
+	
+le contenu de lien symbolique c'est suprimer et lien physique contien le contenu de f2 -> {echo"je change le fichier">>FlienH}
+
+21/
+	Supprimer les répertoires data.d et source.d
+	
+	~/repertoire$ sudo rm -r data.d
+	
+		~/repertoire$ tree
+		.
+		├── FlienH
+		├── dev1.d
+		│   └── fa4
+		├── dev2.d
+		└── source.d
+			├── c.d
+			│   └── FLienS -> f2
+			└── script.d
+
+	
+	~/repertoire$ sudo rm -r source.d
+	
+		~/repertoire$ tree
+		.
+		├── FlienH
+		├── dev1.d
+		│   └── fa4
+		└── dev2.d
+
+
+	

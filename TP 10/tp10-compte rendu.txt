@@ -1,0 +1,72 @@
+tp 10 
+binome 12 a1 
+FERRAH OTHMANE - AYOUB EL FATMI
+---------------------------------
+
+exercice 1 
+test -e  EXO3
+if [$i !=0 ]
+then
+mkdir 'EXO3'
+fi
+cd EXO3
+
+for j in un Deux Trois Quatre Cinq Six Sept Huit Neuf Dix
+do
+       touch $j
+done
+
+echo "Première ligne" > un
+echo "Deuxieme ligne" > Deux
+echo "Troisieme ligne" > Trois
+echo "Quatrieme ligne" > Quatre
+echo "Cinquieme ligne" > Cinq
+echo "Sixieme ligne" > Six
+echo "Septieme ligne" > Sept
+echo "Huitieme ligne" > Huit
+echo "Neuvieme ligne" > Neuf
+echo "Dixième ligne" > Dix
+
+                               
+exercice 2 
+#!/bin/bash
+dt=$(date "+%Y%m%d")
+test -e $dt 
+if [ $? != 0 ]
+then 
+mkdir $dt 
+fi 
+cp EXO3/* $dt
+rm EXO3/*
+for file in $REP/*
+do
+cat  $file >> ~/Gros_fichier.$
+echo $file >> ~/petir_fichier.$
+done 
+
+ exercie 3 
+a- 
+#!/bin/bash
+echo "liste des fichier durepertoire /etc accessible en lecture"
+
+for i in /etc/*
+do 
+	if test -r $i 
+	then
+		echo $i
+	fi
+done 
+
+
+b-
+
+#!/bin/bash 
+echo "liste des fichiers du répertoire /etc accessibles en écriture"
+
+for i in /etc/*
+do 
+	if test -w $i 
+	then 
+		ls $i
+	fi
+done

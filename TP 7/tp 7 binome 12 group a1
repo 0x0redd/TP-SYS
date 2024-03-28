@@ -1,0 +1,127 @@
+tp 5
+binome 12 a1 
+FERRAH OTHMANE - AYOUB EL FATMI
+---------------------------------
+1 Créer un répertoire etc2 dans votre répertoire 
+		pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ pwd 
+		/home/pc/Downloads/tp7
+		pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ mkdir etc2
+		pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ ls -l 
+		total 8400
+		-rw-rw-r-- 1 pc pc 5175887 نونبر  11 10:56  diapos1.pdf
+		-rw-rw-r-- 1 pc pc  532692 نونبر  11 10:56  diapos2.pdf
+		-rw-rw-r-- 1 pc pc  894572 نونبر  11 10:56  diapos3.pdf
+		-rw-rw-r-- 1 pc pc  446950 نونبر  11 10:56  diapos4.pdf
+		-rw-rw-r-- 1 pc pc 1383269 نونبر  11 10:56  diapos5.pdf
+		drwxrwxr-x 2 pc pc    4096 نونبر  11 11:17  etc2
+		-rw-rw-r-- 1 pc pc   67895 نونبر  11 10:56  TP6-hj.pdf
+		-rw-rw-r-- 1 pc pc   76794 نونبر  11 10:56  TP7-tt.pdf
+		-rw-rw-r-- 1 pc pc     105 نونبر  11 11:13 'Untitled Document 1'
+		
+2 Copier tous les fichiers /etc dans votre répertoire etc2 (en utilisant la commande cp)
+
+		pc@pc-ThinkCentre-M70a:/$ cd etc 
+		pc@pc-ThinkCentre-M70a:/etc$ sudo cp -r  * /home/pc/Downloads/tp7/etc2
+		
+3 Archiver etc2 avec la commande tar
+
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ sudo tar -cvf archive.tar etc2
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ tar tvf archive.tar
+	 
+	rwxrwxr-x pc/pc             0 2022-11-11 11:19 etc2/
+	-rw-r--r-- root/root        13 2022-11-11 11:19 etc2/debian_version
+	-rw-r--r-- root/root       624 2022-11-11 11:19 etc2/mtools.conf
+	.....
+	-rw-r--r-- root/root      2180 2022-11-11 11:19 etc2/java-11-openjdk/security/java.policy
+	drwxr-xr-x root/root         0 2022-11-11 11:19 etc2/java-11-openjdk/security/policy/
+
+4 Regarder la taille de ce fichier ainsi généré (votre remarque ?)
+
+pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ ls -lh 
+	-rw-rw-r--   1 pc pc 7.1M نونبر  11 11:26  archive.tar
+	
+	drwxrwxr-x 133 pc pc  12K نونبر  11 11:19  etc2
+		
+5 Dupliquer ce fichier puis compresser les avec respectivement les commandes gzip,bzip2		
+
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ cp archivecoppy.tar archivecoppy2.tar
+	
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ gzip archivecoppy.tar
+	
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ gzip2 archivecoppy2.tar
+	
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ bzip2 archivecoppy2.tar
+	
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ ls -lh 
+	total 18M
+	-rw-rw-r--   1 pc pc 1.3M نونبر  11 11:41  archivecoppy2.tar.bz2
+	-rw-rw-r--   1 pc pc 1.5M نونبر  11 11:36  archivecoppy.tar.gz
+	-rw-rw-r--   1 pc pc 7.1M نونبر  11 11:26  archive.tar
+	drwxrwxr-x 133 pc pc  12K نونبر  11 11:19  etc2
+	
+6 Remarquer la taille des fichiers générés (expliquer)
+
+
+7 Supprimer etc2 puis décompresser et désarchiver l'archive que vous venez de générer.
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ sudo  rm -r etc2 
+	[sudo] password for pc: 
+	
+       pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ ls 
+	 archivecoppy2.tar.bz2   diapos3.pdf   TP7-tt.pdf
+	 archivecoppy.tar.gz     diapos4.pdf  'Untitled Document 1'
+	 archive.tar             diapos5.pdf  'Untitled Document 1~'
+	 diapos1.pdf             fsaisie
+	 diapos2.pdf             TP6-hj.pdf
+	 
+	 pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ gunzip archivecoppy.tar.gz
+	 
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ ls 
+ 	archivecoppy2.tar.bz2   archive.tar   diapos2.pdf   diapos4.pdf       TP6-hj.pdf  		'Untitled Document 1'
+	 archivecoppy.tar        diapos1.pdf   diapos3.pdf   diapos5.pdf   fsaisie   TP7-tt.pdf 
+	  
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ man tar
+	
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ tar -xvf archivecoppy.tar 
+	
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ ls 
+	 archivecoppy2.tar.bz2   diapos2.pdf   etc2        'Untitled Document 1'
+	 archivecoppy.tar        diapos3.pdf   fsaisie     'Untitled Document 1~'
+	 archive.tar             diapos4.pdf   TP6-hj.pdf
+	 diapos1.pdf             diapos5.pdf   TP7-tt.pdf
+
+
+8 Exécuter : cat <<FIN>fsaisie
+
+je tape du texte qui sera sauvé dans fsaisie pour terminer tapez FIN
+(Expliquer ce qui se passe)
+
+	 cat <<FIN>fsaisie 
+	
+	cette commande rederige en ecriture la commande cat à fsaisie tanque FIN n'est pas tapé 
+	
+9 Visualiser le fichier fsaisie avec les commandes: cat, more et less quelle est la différence?
+
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ cat fsaisie 
+	Créer un répertoire etc2 dans votre répertoire
+	Copier tous les fichiers /etc dans votre répertoire etc2 (en utilisant la commande cp)
+	Archiver etc2 avec la commande tar
+	Regarder la taille de ce fichier ainsi généré (votre remarque ?)
+	Dupliquer ce fichier puis compresser les avec respectivement les commandes gzip,bzip2
+	Remarquer la taille des fichiers générés (expliquer)
+	Supprimer etc2 puis décompresser et désarchiver l'archive que vous venez de générer.
+
+10 Exécuter la commande : sort /etc/passwd >passwd-trie 2>&1
+11 Visualiser le fichier passwd-trie remarque?
+
+	cette commande duplique la sortie de la commande sort /etc/passwd et l'ecrit dans passwd-trie puit 2>&1 duplique le descripteur sortie sur le descripteur d'ereurs 
+
+
+
+12 Exécuter la commande : sort /etc/passwd2 >passwd-trie 2>&1
+13 Visualiser le fichier passwd-trie remarque?
+
+	pc@pc-ThinkCentre-M70a:~/Downloads/tp7$ cat passwd-trie.txt
+	cat: passwd-trie.txt: No such file or directory
+	
+	il affiche la sortie d'ereur de la command sort et l'ecrtit dans passwd-trie 
+	et par 2>&1 il derige la sortie d'ereur a la sortie normal 

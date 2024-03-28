@@ -1,0 +1,288 @@
+tp 5
+binome 12 a1 
+FERRAH OTHMANE - AYOUB EL FATMI
+---------------------------------
+1/ construre la sous-arborecence swivate sous <<rep>>
+ . Dans « rep » vous créez le répertoire « rep1 » et les fichiers « .c », « a » et « b ».
+ 	$ mkdir rep
+	$ cd rep
+	$ touch .c a b
+	$ ls -al
+		total 8
+		drwxrwxr-x 2 pc pc 4096 أكتوبر 28 11:07 .
+		drwxr-xr-x 3 pc pc 4096 أكتوبر 28 11:03 ..
+		-rw-rw-r-- 1 pc pc    0 أكتوبر 28 11:07 a
+		-rw-rw-r-- 1 pc pc    0 أكتوبر 28 11:07 b
+		-rw-rw-r-- 1 pc pc    0 أكتوبر 28 11:07 .c
+	$ mkdir rep1
+	$ cd rep1 
+	$ touch a1 b1 .c1
+	$ ls -al
+		total 8
+		drwxrwxr-x 2 pc pc 4096 أكتوبر 28 11:08 .
+		drwxrwxr-x 3 pc pc 4096 أكتوبر 28 11:08 ..
+		-rw-rw-r-- 1 pc pc    0 أكتوبر 28 11:08 a2
+		-rw-rw-r-- 1 pc pc    0 أكتوبر 28 11:08 b2
+		-rw-rw-r-- 1 pc pc    0 أكتوبر 28 11:08 .c2
+	$ mkdir rep3
+	$ cd rep3 
+	$ touch a3
+~/Documents$ tree -a
+	.
+	└── rep
+	    ├── a
+	    ├── b
+	    ├── .c
+	    └── rep1
+		├── a1
+		├── b1
+		├── .c1
+		└── rep2
+		    ├── a2
+		    ├── b2
+		    ├── .c2
+		    └── rep3
+		        └── a3
+		     
+2/ donner le resultats de : $ ls ; ls . ; ls .. ; ls -a ; ls -a . ; ls -a ..
+
+	pc@pc-ThinkCentre-M70a:~/Documents/rep/rep1/rep2/rep3$ ls
+	a3
+	
+	pc@pc-ThinkCentre-M70a:~/Documents/rep/rep1/rep2/rep3$ ls .
+	a3
+
+	pc@pc-ThinkCentre-M70a:~/Documents/rep/rep1/rep2/rep3$ ls ..
+	a2  b2  rep3
+
+	pc@pc-ThinkCentre-M70a:~/Documents/rep/rep1/rep2/rep3$ ls -a
+	.  ..  a
+	
+	pc@pc-ThinkCentre-M70a:~/Documents/rep/rep1/rep2/rep3$ ls -a .
+	.  ..  a3
+	
+	pc@pc-ThinkCentre-M70a:~/Documents/rep/rep1/rep2/rep3$ ls -a ..
+	.  ..  a2  b2  .c2  rep3
+
+3/ 
+-> pour chacun des generque ci dessous 
+pour :
+	(*) 
+	permet d'afficher les fichier avec n'importe quelle chaine de caracteres dans les 		repertoire actuelle
+	
+ >~/Documents/rep$ echo *
+	a b rep1
+	
+ >~/Documents/rep$ ls *
+	a  b
+
+	rep1:
+	a1  b1  rep2
+
+ >~/Documents/rep$ ls -a *
+	a  b
+
+	rep1:
+	.  ..  a1  b1  .c1  rep2
+	
+------------------------------------------------------------------------------------------------
+	(.*)
+	permet d'afficher les fichier qui commence par  .
+	
+>~/Documents/rep$ echo .*
+	. .. .c
+
+	
+>~/Documents/rep$ ls .*
+	.c
+
+	.:
+	a  b  rep1
+
+	..:
+	rep
+
+>~/Documents/rep$ ls -a .*
+	.c
+
+	.:
+	.  ..  a  b  .c  rep1
+
+	..:
+	.  ..  rep
+-----------------------------------------------------------------------------------------------	
+	(*/*)
+	permet d'afficher les fichier qui commanece par n'importe quelle caracter puis / puis n'importe quelle caracter
+
+>~/Documents/rep$ echo */*
+	*rep1/a1 rep1/b1 rep1/rep2
+
+>~/Documents/rep$ ls */*
+	rep1/a1  rep1/b1
+
+	rep1/rep2:
+	a2  b2  rep3
+	
+>~/Documents/rep$ ls -a */*
+	rep1/a1  rep1/b1
+
+	rep1/rep2:
+	.  ..  a2  b2  .c2  rep3
+---------------------------------------------------------------------------------------------------
+
+	(*/.*)
+	permet d'afficher les fichier qui commanece par n'importe quelle caracter puis / puis . puis n'importe quelle caracter
+
+>~/Documents/rep$ echo */.*
+rep1/. rep1/.. rep1/.c1
+
+>~/Documents/rep$ ls -a */.*
+	rep1/.c1
+
+	rep1/.:
+	.  ..  a1  b1  .c1  rep2
+
+	rep1/..:
+	.  ..  a  b  .c  rep1
+
+>~/Documents/rep$ ls */.*
+	rep1/.c1
+
+	rep1/.:
+	a1  b1  rep2
+
+	rep1/..:
+	a  b  rep1
+
+-------------------------------------------------------------------------------------------------------
+	(.*/*)
+	permet d'afficher les fichier qui commence par  . puis n'importe quelle caracter puis / puis n'importe quelle caracter
+	
+>~/Documents/rep$ echo .*/*
+	
+	./a ./b ../rep ./rep1
+
+	
+>$ ls .*/*
+	
+	./a  ./b
+
+	../rep:
+	a  b  rep1
+
+	./rep1:
+	a1  b1  rep2
+
+	
+>~/Documents/rep$ ls -a  .*/*
+	./a  ./b
+
+	../rep:
+	.  ..  a  b  .c  rep1
+
+	./rep1:
+	.  ..  a1  b1  .c1  rep2
+
+---------------------------------------------------------------------------------------------------------------
+	(.*/.*)
+permet d'afficher les fichier qui commence par . puis n'importe quelle caracter puis / puis . puis n'importe quelle caracter
+
+> ~/Documents/rep$ echo .*/.*
+	../. ../.. ./. ./.. ./.c
+
+>~/Documents/rep$ ls .*/.*
+	./.c
+
+	../.:
+	rep
+
+	../..:
+	'<binome25>'   dev1.d              lex.yy.c      smi1           tp3
+	 c.d           dev2.d              Music         snap           tp3_bis
+	 connexion     Documents           Pictures      source         TP-4.pdf
+	 data.d        Downloads           Public        source.d       tp_bison.pdf
+	 de            eclipse             répertoire   '<TDediteur>'   Videos
+	 Desktop       eclipse-workspace   repertoitre   Templates
+
+	./.:
+	a  b  rep1
+
+	./..:
+	rep
+
+>~/Documents/rep$ ls -a .*/.*
+	./.c
+
+	../.:
+	.  ..  rep
+
+	../..:
+	 .                  eclipse             .ssh
+	 ..                 eclipse-workspace   .sudo_as_admin_successful
+	 .bash_history      .gnupg              .swl
+	 .bash_logout       .lesshst            .swm
+	 .bashrc            lex.yy.c            .swn
+	'<binome25>'        .local              .swo
+	'.<binome25>.swp'   .mozilla            .swp
+	 .cache             Music               .swt
+	 c.d                .p2                '<TDediteur>'
+	 .config            Pictures            Templates
+	 connexion          .pki                .thunderbird
+	 data.d             .profile            tp3
+	 de                 Public              tp3_bis
+	 Desktop            répertoire          TP-4.pdf
+	 dev1.d             repertoitre         tp_bison.pdf
+	 dev2.d             smi1                Videos
+	 Documents          snap                .viminfo
+	 Downloads          source              .vscode
+	 .eclipse           source.d
+
+	./.:
+	.  ..  a  b  .c  rep1
+
+	./..:
+	.  ..  rep
+
+----------------------------------------------------------------------------------------------
+4/ En utilisant la commande « ls » et les noms
+génériques de fichiers, afficher tous les fichiers de votre répertoire courant (« rep ») dont les
+noms sont un nombre compris entre 20 et 40.
+
+	>/rep$ ls [2-4][0-9]
+	21  27  39
+	
+	> ~/Documents/rep$ ls ?[1-9]
+	21  27  39  
+ 
+ 
+5/ une commande qui permet d'afficher tous les fichiers dont le nom ne commence pas
+par « s. »:
+
+>~/Documents/rep$ touch b.truc chose s.f sous 
+	pc@pc-ThinkCentre-M70a:~/Documents/rep$ ls
+	21  27  2a  39  55  a  b  b.truc  chose  rep1  s.f  sous
+
+	>~/Documents/rep$ ls [!s.]*
+21  27  2a  39  a  b  b.truc  chose
+	
+	
+
+6/ Utiliser les commandes « grep », « | » et « wc » pour compter le
+nombre d'occurrences de cette chaîne, toute orthographe considérée (majuscule/minuscule).
+
+
+on a : 
+	>/rep$ grep "[lL]*[sS]******[uU]*" 'le systeme unis'
+le systeme unix
+Le Systeme Unix
+Le systeme unix
+le systeme Unix
+ 
+ donc : 
+	>~/rep$ grep "[lL]*[sS]******[uU]*" 'le systeme unis' | wc -l
+
+4
+
+
+
+
